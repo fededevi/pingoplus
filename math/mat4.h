@@ -1,6 +1,6 @@
 #pragma once
 
-#include "vec3.h"
+#include "vec.h"
 
 template <class T> class Mat4
 {
@@ -11,6 +11,10 @@ private:
     Mat4() = delete;
 
 public:
+    const T & operator[](std::size_t i) const {
+        return e[i];
+    }
+
     static const inline Mat4 identity() { return {
             1, 0, 0, 0,
             0, 1, 0, 0,
@@ -18,7 +22,7 @@ public:
             0, 0, 0, 1
         };}
 
-    static const inline Mat4 mat4Translate(const Vec3<T> & l) {
+    static const inline Mat4 translation(const Vec3<T> & l) {
         return {
             1,  0,  0, l.x,
             0,  1,  0, l.y,
@@ -27,7 +31,7 @@ public:
         };
     }
 
-    static const inline Mat4 mat4RotateX(T phi) {
+    static const inline Mat4 rotationX(T phi) {
         const T s = sin(phi);
         const T c = cos(phi);
         return (Mat4){{
@@ -38,7 +42,7 @@ public:
         }};
     }
 
-    static const inline Mat4 mat4RotateY(T phi) {
+    static const inline Mat4 rotationY(T phi) {
         const T s = sin(phi);
         const T c = cos(phi);
         return (Mat4){{
@@ -49,7 +53,7 @@ public:
         }};
     }
 
-    static const inline Mat4 mat4RotateZ(T phi) {
+    static const inline Mat4 rotationZ(T phi) {
         const T s = sin(phi);
         const T c = cos(phi);
         return (Mat4){{
@@ -60,7 +64,7 @@ public:
         }};
     }
 
-    static const inline Mat4 mat4Scale(Vec3<T> s) {
+    static const inline Mat4 scaling(Vec3<T> s) {
         const T p = s.x;
         const T q = s.y;
         const T r = s.z;
