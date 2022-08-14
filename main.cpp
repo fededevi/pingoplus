@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "math/mat4.h"
-#include "math/mathprinters.h"
+#include "math/printers.h"
 
 using namespace std;
 
