@@ -1,6 +1,7 @@
 #include <ostream>
 
 #include "mat4.h"
+#include "vec.h"
 
 template <class T>
 static  __attribute__ ((unused)) std::ostream& operator<<(std::ostream& os, const Mat4<T>& m) {
@@ -12,10 +13,20 @@ static  __attribute__ ((unused)) std::ostream& operator<<(std::ostream& os, cons
     return os;
 }
 
-#include "vec3.h"
+template <class T>
+static  __attribute__ ((unused)) std::ostream& operator<<(std::ostream& os, const Vec2<T>& m) {
+    os << "Vec3<" << typeid(T).name() << "> {" << "\t" << m.e[0] << "\t" << m.e[1] << " }\n";
+    return os;
+}
 
 template <class T>
 static  __attribute__ ((unused)) std::ostream& operator<<(std::ostream& os, const Vec3<T>& m) {
-    os << "Vec3<" << typeid(T).name() << "> {" << "\t" << m.e[ 0] << "\t" << m.e[ 1] << "\t" << m.e[ 2] << " }\n";
+    os << "Vec3<" << typeid(T).name() << "> {" << "\t" << m.e[0] << "\t" << m.e[1] << "\t" << m.e[2] << " }\n";
+    return os;
+}
+
+template <class T>
+static  __attribute__ ((unused)) std::ostream& operator<<(std::ostream& os, const Vec4<T>& m) {
+    os << "Vec3<" << typeid(T).name() << "> {" << "\t" << m.e[0] << "\t" << m.e[1] << "\t" << m.e[2] << "\t" << m.e[3] << " }\n";
     return os;
 }

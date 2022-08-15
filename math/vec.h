@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cmath>
+
 template <class T> class Vec4
 {
 public:
@@ -44,8 +45,6 @@ template <class T> Vec4<T> operator-(const Vec4<T> & l, const Vec4<T> & r) {
 template <class T> Vec4<T> operator/(const Vec4<T> & l, const Vec4<T> & r) {
     return {l[0] / r[0], l[1] / r[1], l[2] / r[2], l[3] / r[3],};
 };
-
-
 
 template <class T> class Vec3
 {
@@ -100,7 +99,6 @@ template <class T> Vec3<T> operator/(const Vec3<T> & l, const Vec3<T> & r) {
     return {l[0] / r[0], l[1] / r[1], l[2] / r[2]};
 };
 
-
 template <class T> class Vec2
 {
 public:
@@ -134,17 +132,16 @@ public:
 
 
 template <class T> Vec2<T> operator+(const Vec2<T> & l, const Vec2<T> & r) {
-    return {l[0] + r[0], l[1] + r[1]};
+    return { l[0] + r[0], l[1] + r[1] };
 };
 
 template <class T> Vec2<T> operator-(const Vec2<T> & l, const Vec2<T> & r) {
-    return {l[0] - r[0], l[1] - r[1]};
+    return { l[0] - r[0], l[1] - r[1] };
 };
 
 template <class T> Vec2<T> operator/(const Vec2<T> & l, const Vec2<T> & r) {
-    return {l[0] / r[0], l[1] / r[1]};
+    return { l[0] / r[0], l[1] / r[1] };
 };
-
 
 using Vec3d = Vec3<double>;
 using Vec3f = Vec3<float>;
