@@ -98,15 +98,20 @@ public:
     }
 
     static const inline Mat4 scaling( const Vec3<T> & s ) {
-        const T p = s.x;
-        const T q = s.y;
-        const T r = s.z;
         return (Mat4){{
-            p,  0,  0, 0,
-            0,  q,  0, 0,
-            0,  0,  r, 0,
-            0,  0,  0, 1
+            s[0],  0,     0,    0,
+            0,     s[1],  0,    0,
+            0,     0,     s[2], 0,
+            0,     0,     0,    1
         }};
+    }
+
+    Vec3<T> eulerAngles() const {
+        return Vec3<T>({ 
+            atan2(e[6], e[10]),
+            atan2(-e[2], sqrt(e[0]*e[0] + e[4]*e[4])),
+            atan2(e[1], e[5])
+        });
     }
 
     void scale( const Vec3<T> & s ) {
@@ -185,10 +190,13 @@ public:
 
 };
 
-/*
-template <class T> Vec3<T> operator+(const Vec3<T> & l, const Vec3<T> & r) {
-    return {l[0] + r[0], l[1] + r[1], l[2] + r[2]};
-};*/
+
+template <class T> Vec4<T> operator*(const Vec4<T> & l, const Mat4<T> & r) {
+    return Vec4<T>({l[0] * r[0]  + l[1] * r[1]  + l[2] * r[2]  + l[3] * r[3],
+                   l[0] * r[4]  + l[1] * r[5]  + l[2] * r[6]  + l[3] * r[7],
+                   l[0] * r[8]  + l[1] * r[9]  + l[2] * r[10] + l[3] * r[11],
+                   l[0] * r[12] + l[1] * r[13] + l[2] * r[14] + l[3] * r[15]});
+};
 
 
 template <class T> Mat4<T> operator*(const Mat4<T> & l, const Mat4<T> & r) {
