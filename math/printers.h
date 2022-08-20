@@ -1,7 +1,7 @@
 #include <ostream>
 
-#include "mat4.h"
-#include "vec.h"
+#include "matrix.h"
+#include "vector.h"
 
 template <class T>
 static  __attribute__ ((unused)) std::ostream& operator<<(std::ostream& os, const Mat4<T>& m) {

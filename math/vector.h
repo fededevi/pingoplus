@@ -5,7 +5,11 @@
 template <class T> class Vec4
 {
 public:
-    T e[3];
+    T e[4];
+    T x() const {return e[0];}
+    T y() const {return e[1];}
+    T z() const {return e[2];}
+    T w() const {return e[3];}
 
 private:
     Vec4() = delete;
@@ -50,6 +54,9 @@ template <class T> class Vec3
 {
 public:
     T e[3];
+    T x() const {return e[0];}
+    T y() const {return e[1];}
+    T z() const {return e[2];}
 
 private:
     Vec3() = delete;
@@ -102,7 +109,9 @@ template <class T> Vec3<T> operator/(const Vec3<T> & l, const Vec3<T> & r) {
 template <class T> class Vec2
 {
 public:
-    T e[3];
+    T e[2];
+    T x() const {return e[0];}
+    T y() const {return e[1];}
 
 private:
     Vec2() = delete;
@@ -143,7 +152,11 @@ template <class T> Vec2<T> operator/(const Vec2<T> & l, const Vec2<T> & r) {
     return { l[0] / r[0], l[1] / r[1] };
 };
 
+using Vec4d = Vec4<double>;
+using Vec4f = Vec4<float>;
+
 using Vec3d = Vec3<double>;
 using Vec3f = Vec3<float>;
+
 using Vec2d = Vec2<double>;
 using Vec2f = Vec2<float>;

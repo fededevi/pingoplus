@@ -1,6 +1,6 @@
 #pragma once
 
-#include "vec.h"
+#include "vector.h"
 
 template <class T, const u_int8_t size = 16> class Mat4
 {
@@ -39,16 +39,17 @@ public:
             0, 0, 0, 1
         });}
 
-    static const inline Mat4 translation( const Vec3<T> & l ) {
-        return {
-            1,  0,  0, l.x,
-            0,  1,  0, l.y,
-            0,  0,  1, l.z,
-            0,  0,  0,   1
-        };
-    }
 
-    static const inline Mat4 rotation( const Vec3<T> & a, const T & phi ) {
+    static const inline Mat4 translation( const Vec3<T> & l ) {  
+        return Mat4<T>({
+            1,  0,  0,   l.x(),
+            0,  1,  0,   l.y(),
+            0,  0,  1,   l.z(),
+            0,  0,  0,   1
+        });
+        }
+
+    static inline Mat4 rotation( const Vec3<T> & a, const T & phi ) {
         const T s = sin(phi);
         const T c = cos(phi);
         const T t = 1 - c;
@@ -183,6 +184,12 @@ public:
     }
 
 };
+
+/*
+template <class T> Vec3<T> operator+(const Vec3<T> & l, const Vec3<T> & r) {
+    return {l[0] + r[0], l[1] + r[1], l[2] + r[2]};
+};*/
+
 
 template <class T> Mat4<T> operator*(const Mat4<T> & l, const Mat4<T> & r) {
     Mat4<T> out;
